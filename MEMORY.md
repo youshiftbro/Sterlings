@@ -110,6 +110,11 @@ CLARK STERLING (Opus) — CTO / Technical Director / CFO
 - **Spawn for:** Research, multi-file edits, testing, anything >3 tool calls
 - **Keep in main:** Quick answers, single lookups, conversation
 
+### Pre-Flight Check (before expensive ops)
+1. Run `session_status` 
+2. If >40k input → compact FIRST or spawn sub-agent
+3. Research tasks = ALWAYS spawn (non-negotiable)
+
 ## 🐛 Known Bugs (Fix Next Session)
 - ~~**Mission Control API:** `due_date` method missing~~ ✅ FIXED by Rui (2026-02-01)
 
