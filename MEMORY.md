@@ -85,6 +85,31 @@ CLARK STERLING (Opus) — CTO / Technical Director / CFO
 - **BROWSER SNAPSHOTS ARE EXPENSIVE** — each snapshot dumps entire DOM (10-30k tokens). Use web_fetch for simple lookups, browser only when needed. Limit searches to 2-3 max per task.
 - **135K INPUT = FAILURE** — 2026-02-01 browser research session bloated to 135k. Should have used web_fetch or spawned a sub-agent for research.
 
+### Token Optimization Checklist
+| Action | Saves | Do Instead |
+|--------|-------|------------|
+| Browser snapshot | 10-30k/each | web_fetch (1-3k) |
+| Read full file | Variable | offset/limit or memory_get |
+| Multi-step research | Compounds | Spawn sub-agent (isolated) |
+| Heartbeat polling | Burns main ctx | Cron jobs (isolated) |
+| Session history fetch | 50k+ possible | Sub-agents report results |
+| Re-reading MEMORY.md | 5-10k | Already in system prompt! |
+| Verbose replies | Adds up | Be terse, bullet points |
+| Reading skills I know | 2-5k each | Only read when uncertain |
+
+### Model Cost Optimization
+| Task Type | Use Model | Why |
+|-----------|-----------|-----|
+| Simple chat | gpt-4o | Cheap, fast |
+| Research/lookup | gpt-4o-mini | Cheapest |
+| Code review | sonnet | Good, cheaper than opus |
+| Deep thinking/specs | opus | Worth it for quality |
+| Sub-agent coding | codex | Fast, cheap for code |
+
+### Sub-Agent Strategy
+- **Spawn for:** Research, multi-file edits, testing, anything >3 tool calls
+- **Keep in main:** Quick answers, single lookups, conversation
+
 ## 🐛 Known Bugs (Fix Next Session)
 - ~~**Mission Control API:** `due_date` method missing~~ ✅ FIXED by Rui (2026-02-01)
 
